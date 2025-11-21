@@ -46,8 +46,13 @@
       msg.textContent = "コード " + code + " に対応するURLへ転送しています…";
 
       try {
+        const ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJxcmdzeXRreGJoYnJucmhxbGNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU2ODIyODMsImV4cCI6MjA3MTI1ODI4M30.LWeiva7gpFf9lHGuOKqzyr-tZihHuX9KdlHUjuqYDU0"; // ダッシュボードの API → anon public
         const res = await fetch(ENDPOINT + "?code=" + encodeURIComponent(code), {
           method: "GET",
+          headers: {
+            "apikey": ANON_KEY,
+            "Authorization": "Bearer " + ANON_KEY
+          }
         });
 
         if (!res.ok) {
